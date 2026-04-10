@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ article.title }}{% endblock title %}
+
+{% block content %}
+<div class="card mb-4 shadow-sm">
+    {% if article.photo %}
+    <img src="{{ article.photo.url }}" class="card-img-top" alt="{{ article.title }}">
+    {% endif %}
+
+    <div class="card-body">
+        <h2 class="card-title">{{ article.title }}</h2>
+        <p class="card-text">{{ article.body|safe }}</p>
+
+        <div class="text-muted">
+            Muallif: {{ article.author|title }} | {{ article.date }}
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <a href="{% url 'article_list' %}" class="btn btn-secondary btn-sm">Orqaga</a>
+        <a href="{% url 'article_edit' article.pk %}" class="btn btn-warning btn-sm">Tahrirlash</a>
+        <a href="{% url 'article_delete' article.pk %}" class="btn btn-danger btn-sm">O‘chirish</a>
+    </div>
+</div>
+
+<!-- 🔽 COMMENTLAR -->
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h4>💬 Izohlar</h4>
+
+        {% for comment in article.comments.all %}
+            <div class="border rounded p-2 mb-2">
+                <strong>{{ comment.author }}</strong>
+                <p class="mb-1">{{ comment.comment }}</p>
+            </div>
+        {% empty %}
+            <p>Hozircha izohlar yo‘q 😔</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

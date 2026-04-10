@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Bosh Sahifa{% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="text-center p-5 rounded shadow-lg bg-white" style="max-width: 700px;">
+        <h1 class="display-3 font-weight-bold mb-4 text-primary">
+            Xush kelibsiz
+            {% if user.is_authenticated %}
+                {{ user.username|title }}!
+            {% else %}
+                Mehmon!
+            {% endif %}
+        </h1>
+
+        <p class="lead text-secondary mb-4" style="font-size: 1.25rem; line-height: 1.6;">
+            {% if user.is_authenticated %}
+                Sizning shaxsiy blogingizga xush kelibsiz. Navbar orqali yangi maqola qo‘shishingiz, hisobingizni boshqarishingiz va maqolalaringizni ko‘rishingiz mumkin.
+            {% else %}
+                Saytimizga kirish yoki ro‘yxatdan o‘tish orqali barcha funksiyalardan foydalanishingiz mumkin.
+            {% endif %}
+        </p>
+
+        <!-- Postlarni ko‘rish tugmasi -->
+        <a href="{% url 'article_list' %}" class="btn btn-primary btn-lg mt-3">
+            Postlarni ko‘rish
+        </a>
+
+        <hr class="my-4">
+
+        <p class="text-muted" style="font-size: 0.9rem;">
+            Navbar orqali barcha amallarni boshqarishingiz mumkin. Sizning blogingizni yaratish va boshqarish endi juda oson.
+        </p>
+    </div>
+</div>
+{% endblock content %}

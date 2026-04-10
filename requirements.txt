@@ -1,0 +1,6 @@
+Django>=5.0
+django-environ
+django-crispy-forms
+crispy-bootstrap4
+django-ckeditor
+psycopg2-binary

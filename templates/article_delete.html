@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Postni o‘chirish{% endblock title %}
+
+{% block content %}
+<div class="alert alert-danger mt-4">
+    <h4 class="alert-heading">Diqqat!</h4>
+    <p>Siz <strong>{{ article.title }}</strong> nomli postni o‘chirmoqchisiz. Bu amalni qaytarib bo‘lmaydi!</p>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Ha, o‘chirilsin</button>
+        <a href="{% url 'article_list' %}" class="btn btn-secondary">Bekor qilish</a>
+    </form>
+</div>
+{% endblock content %}
